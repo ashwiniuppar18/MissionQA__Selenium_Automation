@@ -16,6 +16,18 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>2.22.2
+      </version>
+
+    </plugin>
+  </plugins>
+</build>
+
     <dependencies>
 
         <dependency>
@@ -31,17 +43,18 @@
             <version>1.0.5</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
             <version>1.2.5</version>
         </dependency>
-
 
         <dependency>
             <groupId>info.cukes</groupId>
@@ -67,6 +80,7 @@
             <artifactId>cucumber-pro</artifactId>
             <version>1.0.16</version>
         </dependency>
+
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
@@ -79,12 +93,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.testng</groupId>-->
-        <!--            <artifactId>testng</artifactId>-->
-        <!--            <version>6.14.3</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
+
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
@@ -146,12 +155,14 @@
             <artifactId>maven-project</artifactId>
             <version>2.2.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.0.0-beta3</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -170,16 +181,19 @@
             <artifactId>xml-path</artifactId>
             <version>4.1.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.3.0</version>
+            <version>4.4.3</version>
             <scope>compile</scope>
         </dependency>
+
     </dependencies>
 </project>

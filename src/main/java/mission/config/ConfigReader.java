@@ -1,0 +1,40 @@
+package mission.config;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+public class ConfigReader {
+
+    private static Properties properties = new Properties();
+
+    static {
+        try {
+            InputStream input =
+                    ConfigReader.class.getClassLoader()
+                            .getResourceAsStream("config.properties");
+
+            if (input != null) {
+                properties.load(input);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to load config.properties");
+        }
+    }
+
+    public static String getProperty(String key) {
+        // First check environment variable override (REQRES_API_KEY used for api.key)
+        if ("api.key".equals(key)) {
+            String env = System.getenv("REQRES_API_KEY");
+            if (env != null && !env.trim().isEmpty()) {
+                return env;
+            }
+        }
+        return properties.getProperty(key);
+    }
+
+    public static String getBaseUrl() {
+        return getProperty("base.url");
+    }
+
+}
