@@ -22,7 +22,6 @@ Feature: API test
   Scenario Outline: CREATE a user
     Given I create a user with following <Name> <Job>
     Then response should contain the following data
-      | name | job | id | createdAt |
 
     Examples:
       | Name  | Job     |

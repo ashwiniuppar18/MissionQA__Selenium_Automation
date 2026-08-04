@@ -1,0 +1,34 @@
+package mission.config;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import mission.driver.BasePage;
+
+public class LoadProp extends BasePage {
+
+    static Properties prop;
+    static FileInputStream input;
+    public static String testData = "/src/main/TestData/TestData.properties";
+
+    private static File currentDirectory = new File(new File("").getAbsolutePath());
+
+
+    public static String getProperty(String key) {
+        prop = new Properties();
+
+        try {
+            input = new FileInputStream(currentDirectory + testData);
+            prop.load(input);
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return prop.getProperty(key);
+    }
+
+      public static String getBaseUrl() {
+        return getProperty("base.url");
+    }
+}
