@@ -20,7 +20,6 @@ public class ResponseValidator {
     Assert.assertEquals(response.jsonPath().getString("data.email"), email);
   }
 
-    // Validate created user
     public void validateCreatedUser(Response response, String name, String job) {
 
         Assert.assertEquals(response.jsonPath().getString("name"), name);

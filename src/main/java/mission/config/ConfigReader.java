@@ -23,7 +23,6 @@ public class ConfigReader {
     }
 
     public static String getProperty(String key) {
-        // First check environment variable override (REQRES_API_KEY used for api.key)
         if ("api.key".equals(key)) {
             String env = System.getenv("REQRES_API_KEY");
             if (env != null && !env.trim().isEmpty()) {
