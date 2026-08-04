@@ -89,60 +89,10 @@ public class UISteps extends BasePage {
 
         wait.until(ExpectedConditions.urlContains("/inventory"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inventory_container")));
-
-        // robustly dismiss popups/alerts that appear after login
-        dismissPopups();
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("add-to-cart-sauce-labs-backpack")));
     }
 
-    private void dismissPopups() {
-        // accept JS alert if present
-        try {
-            new WebDriverWait(driver, 3).until(ExpectedConditions.alertIsPresent());
-            driver.switchTo().alert().accept();
-        } catch (Exception ignored) {}
-
-        // try clicking common OK/Close/Continue buttons
-        String[] okXpaths = {
-                "//button[normalize-space(text())='OK']",
-                "//button[normalize-space(text())='Ok']",
-                "//button[normalize-space(text())='Continue']",
-                "//button[normalize-space(text())='Close']",
-                "//*[contains(@class,'swal2-confirm')]",
-                "//*[@role='dialog']//button[contains(.,'OK') or contains(.,'Close') or contains(.,'Continue')]"
-        };
-
-        try {
-            for (String xp : okXpaths) {
-                List<WebElement> els = driver.findElements(By.xpath(xp));
-                if (!els.isEmpty()) {
-                    for (WebElement e : els) {
-                        if (e.isDisplayed() && e.isEnabled()) {
-                            try {
-                                ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", e);
-                                Thread.sleep(200);
-                            } catch (Exception ignored) {}
-                            return;
-                        }
-                    }
-                }
-            }
-        } catch (Exception ignored) {}
-
-        // send ESC via Actions as fallback
-        try {
-            new Actions(driver).sendKeys(Keys.ESCAPE).perform();
-            Thread.sleep(200);
-        } catch (Exception ignored) {}
-
-        // final fallback: remove overlay nodes via JS
-        try {
-            ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
-                    "document.querySelectorAll('.modal, .modal-backdrop, .popup, .overlay, .swal2-container, .sweet-alert, .dialog').forEach(e=>e.remove());"
-            );
-        } catch (Exception ignored) {}
-    }
+    
 
     @Given("^I add the following items to the basket$")
     public void i_add_the_following_items_to_the_basket(DataTable table) {

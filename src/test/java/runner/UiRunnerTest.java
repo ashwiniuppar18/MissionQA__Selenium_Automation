@@ -20,13 +20,8 @@ public class UiRunnerTest extends AbstractTestNGCucumberTests {
     @AfterClass(alwaysRun = true)
     public void closeBrowserAfterAllScenarios() {
         if (BasePage.driver != null) {
-            try {
-                BasePage.driver.quit();
-            } catch (NoSuchSessionException ignored) {
-                // already closed
-            } finally {
-                BasePage.driver = null;
-            }
+            BasePage.driver.quit();
+            BasePage.driver = null;
         }
     }
 }
